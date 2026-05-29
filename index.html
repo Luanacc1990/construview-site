@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construview — Gestão Financeira de Empreendimentos CEF</title>
+<meta name="description" content="Plataforma de gestão financeira para construtoras no ecossistema Caixa Econômica Federal. Visibilidade total sobre liberações, registros e garantias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D0E11;
+  --ink2:#3A3C42;
+  --ink3:#7A7D85;
+  --ink4:#B8BAC0;
+  --surface:#F7F6F2;
+  --white:#FFFFFF;
+  --rule:#E2E0D8;
+  --accent:#1A3A5C;
+  --accent2:#2E5F8A;
+  --gold:#B8935A;
+  --gold2:#D4AF82;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--surface);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  background:rgba(247,246,242,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.logo-mark{
+  width:32px;height:32px;border-radius:6px;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Playfair Display',serif;font-size:16px;font-weight:500;
+  letter-spacing:-0.02em;
+}
+.nav-wordmark{
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;
+  color:var(--ink);letter-spacing:-0.01em;
+}
+.nav-right{
+  font-size:12px;color:var(--ink3);font-family:'DM Mono',monospace;
+  letter-spacing:0.04em;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 48px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;top:0;right:0;
+  width:55%;height:100%;
+  background:var(--white);
+  clip-path:polygon(8% 0,100% 0,100% 100%,0 100%);
+  z-index:0;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{
+  content:'';display:block;width:24px;height:1px;background:var(--gold);
+}
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,5vw,64px);
+  font-weight:400;line-height:1.08;
+  letter-spacing:-0.03em;
+  color:var(--ink);
+  margin-bottom:28px;
+}
+h1 em{color:var(--accent);font-style:normal;}
+.hero-sub{
+  font-size:17px;color:var(--ink2);line-height:1.65;
+  max-width:460px;margin-bottom:48px;font-weight:300;
+}
+.hero-cta-group{
+  display:flex;align-items:center;gap:24px;
+}
+.badge-em-breve{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  font-size:13px;color:var(--ink2);
+  background:var(--white);
+}
+.badge-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-note{font-size:12px;color:var(--ink3);}
+
+/* HERO RIGHT — dashboard preview */
+.hero-visual{
+  position:relative;
+}
+.dash-preview{
+  background:var(--white);
+  border:1px solid var(--rule);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 40px rgba(13,14,17,0.08);
+}
+.dash-topbar{
+  background:var(--ink);
+  padding:12px 16px;
+  display:flex;align-items:center;gap:8px;
+}
+.dash-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.15);}
+.dash-url{
+  flex:1;background:rgba(255,255,255,0.06);border-radius:4px;
+  padding:4px 10px;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.4);
+}
+.dash-body{padding:20px;}
+.dash-emp-name{font-weight:500;font-size:14px;color:var(--ink);margin-bottom:2px;}
+.dash-emp-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;}
+.dash-kpi{background:var(--surface);border-radius:6px;padding:10px 12px;}
+.dash-kpi-l{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.dash-kpi-v{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--ink);}
+.dash-kpi-v.green{color:#1A7A4A;}
+.dash-kpi-v.amber{color:#B8935A;}
+.dash-bar-lbl{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;display:flex;justify-content:space-between;}
+.dash-track{height:5px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:12px;}
+.dash-fill{height:100%;background:var(--accent);border-radius:3px;}
+.dash-rows{border-top:1px solid var(--rule);padding-top:12px;}
+.dash-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(226,224,216,0.5);}
+.dash-row:last-child{border-bottom:none;}
+.dash-row-l{font-size:11px;color:var(--ink2);}
+.dash-row-v{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink);}
+.dash-row-v.red{color:#B84040;}
+.dash-row-v.green{color:#1A7A4A;}
+
+/* DIVIDER */
+.rule-section{
+  max-width:1100px;margin:0 auto;
+  padding:0 48px;
+}
+.rule-line{height:1px;background:var(--rule);}
+
+/* PILARES */
+.pilares{
+  padding:100px 48px;
+}
+.pilares-inner{max-width:1100px;margin:0 auto;}
+.section-label{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:48px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,3.5vw,44px);font-weight:400;
+  letter-spacing:-0.025em;line-height:1.15;
+  margin-bottom:14px;
+}
+.pilares-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
+  margin-top:56px;
+}
+.pilar{
+  background:var(--white);
+  padding:36px 32px;
+}
+.pilar-num{
+  font-family:'Playfair Display',serif;font-size:40px;
+  color:var(--gold2);line-height:1;margin-bottom:20px;font-weight:400;
+}
+.pilar-titulo{font-weight:500;font-size:16px;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em;}
+.pilar-texto{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300;}
+
+/* PARA QUEM */
+.para-quem{
+  background:var(--ink);
+  padding:100px 48px;
+  position:relative;
+  overflow:hidden;
+}
+.para-quem::before{
+  content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--ink);
+}
+.para-quem-inner{max-width:1100px;margin:0 auto;}
+.para-quem .section-label{color:rgba(255,255,255,0.3);}
+.para-quem .section-label::after{background:rgba(255,255,255,0.1);}
+.para-quem h2{color:var(--white);}
+.para-quem-sub{font-size:17px;color:rgba(255,255,255,0.5);font-weight:300;max-width:520px;margin-top:12px;line-height:1.65;}
+.perfis{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;overflow:hidden;margin-top:56px;
+}
+.perfil{background:rgba(255,255,255,0.03);padding:32px;}
+.perfil-icone{
+  width:40px;height:40px;border-radius:6px;
+  background:rgba(184,147,90,0.15);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.perfil-icone svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.perfil-titulo{font-weight:500;font-size:15px;color:var(--white);margin-bottom:8px;}
+.perfil-texto{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;}
+
+/* FOOTER */
+footer{
+  padding:48px;
+  border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.footer-right{font-size:12px;color:var(--ink3);font-family:'DM Mono',monospace;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .hero{padding:100px 24px 60px;}
+  .hero-inner{grid-template-columns:1fr;gap:48px;}
+  .hero::before{display:none;}
+  .hero-visual{display:none;}
+  .pilares{padding:60px 24px;}
+  .pilares-grid{grid-template-columns:1fr;}
+  .para-quem{padding:60px 24px;}
+  .perfis{grid-template-columns:1fr;}
+  footer{padding:32px 24px;flex-direction:column;align-items:flex-start;}
+  .rule-section{padding:0 24px;}
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-mark">C</div>
+    <span class="nav-wordmark">Construview</span>
+  </a>
+  <span class="nav-right">construview.io</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Plataforma em desenvolvimento</div>
+      <h1>Gestão financeira de empreendimentos <em>CEF</em></h1>
+      <p class="hero-sub">
+        Visibilidade completa sobre liberações, registros e garantias — integrando automaticamente os relatórios da Caixa Econômica Federal em uma única plataforma analítica.
+      </p>
+      <div class="hero-cta-group">
+        <div class="badge-em-breve">
+          <span class="badge-dot"></span>
+          Em breve
+        </div>
+        <span class="hero-note">Lançamento previsto para 2026</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="dash-preview">
+        <div class="dash-topbar">
+          <div class="dash-dot"></div>
+          <div class="dash-dot"></div>
+          <div class="dash-dot"></div>
+          <div class="dash-url">construview.io/painel</div>
+        </div>
+        <div class="dash-body">
+          <div class="dash-emp-name">Residencial Parque das Flores</div>
+          <div class="dash-emp-meta">Contrato 177770018027 · APF 62390083</div>
+          <div class="dash-kpis">
+            <div class="dash-kpi">
+              <div class="dash-kpi-l">Progresso obra</div>
+              <div class="dash-kpi-v">78,4%</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-l">Capital retido</div>
+              <div class="dash-kpi-v amber">R$ 412 mil</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-l">Sem registro</div>
+              <div class="dash-kpi-v">7 unid.</div>
+            </div>
+          </div>
+          <div class="dash-bar-lbl">
+            <span>Liberado acumulado</span>
+            <span>78,4%</span>
+          </div>
+          <div class="dash-track"><div class="dash-fill" style="width:78%"></div></div>
+          <div class="dash-rows">
+            <div class="dash-row">
+              <span class="dash-row-l">Total liberado PF</span>
+              <span class="dash-row-v green">R$ 4.820.000</span>
+            </div>
+            <div class="dash-row">
+              <span class="dash-row-l">Total liberado PJ</span>
+              <span class="dash-row-v">R$ 1.240.000</span>
+            </div>
+            <div class="dash-row">
+              <span class="dash-row-l">Remuneração pendente</span>
+              <span class="dash-row-v amber">R$ 38.200</span>
+            </div>
+            <div class="dash-row">
+              <span class="dash-row-l">Custo de atraso</span>
+              <span class="dash-row-v red">R$ 21.400</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule-section"><div class="rule-line"></div></div>
+
+<section class="pilares">
+  <div class="pilares-inner">
+    <div class="section-label reveal">O que oferecemos</div>
+    <h2 class="reveal">Inteligência financeira<br>para quem constrói com a Caixa</h2>
+    <div class="pilares-grid reveal">
+      <div class="pilar">
+        <div class="pilar-num">01</div>
+        <div class="pilar-titulo">Integração automática de relatórios</div>
+        <p class="pilar-texto">Importa e cruza automaticamente os relatórios do CIWEB — DCD, ECN, ERU, EPR e outros — sem digitação manual, sem planilhas intermediárias.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-num">02</div>
+        <div class="pilar-titulo">Visão consolidada do portfólio</div>
+        <p class="pilar-texto">Todos os empreendimentos em um único painel. Identifique rapidamente quais obras exigem atenção imediata por atraso de registro, liberação pendente ou garantia insuficiente.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-num">03</div>
+        <div class="pilar-titulo">Alertas e custo do atraso</div>
+        <p class="pilar-texto">Calcula automaticamente o custo financeiro acumulado por unidades sem registro em cartório — transformando um dado oculto em uma decisão quantificada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="para-quem">
+  <div class="para-quem-inner">
+    <div class="section-label reveal">Público-alvo</div>
+    <h2 class="reveal">Desenvolvido para quem<br>opera em escala</h2>
+    <p class="para-quem-sub reveal">A plataforma foi concebida para construtoras e gestoras de ativos com carteira ativa no financiamento habitacional da Caixa.</p>
+    <div class="perfis reveal">
+      <div class="perfil">
+        <div class="perfil-icone">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="perfil-titulo">Diretores financeiros</div>
+        <p class="perfil-texto">Visão consolidada do portfólio com indicadores de criticidade, capital retido e custo de oportunidade por empreendimento.</p>
+      </div>
+      <div class="perfil">
+        <div class="perfil-icone">
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+        </div>
+        <div class="perfil-titulo">Gerentes de obras</div>
+        <p class="perfil-texto">Acompanhamento preciso do previsto versus liberado, evolução física e pendências de registro que impactam o fluxo de caixa.</p>
+      </div>
+      <div class="perfil">
+        <div class="perfil-icone">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="perfil-titulo">Analistas de crédito imobiliário</div>
+        <p class="perfil-texto">Reconciliação automática entre relatórios, dupla conferência de valores e rastreamento de divergências entre o previsto e o efetivado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="/" class="footer-logo">
+    <div class="logo-mark">C</div>
+    <span class="nav-wordmark">Construview</span>
+  </a>
+  <span class="footer-right">© 2026 Construview · construview.io</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
