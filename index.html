@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Construview · Gestão financeira de empreendimentos CAIXA</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%231E4D3A'/><rect x='27' y='48' width='12' height='22' rx='3' fill='%23FAF8F3'/><rect x='44' y='36' width='12' height='34' rx='3' fill='%23FAF8F3'/><rect x='61' y='24' width='12' height='46' rx='3' fill='%23FAF8F3'/><path d='M22 73 H78' stroke='%23B0883E' stroke-width='3.2' stroke-linecap='round'/><path d='M22 73 v5 M78 73 v5' stroke='%23B0883E' stroke-width='3.2' stroke-linecap='round'/></svg>">
 <meta name="description" content="Acompanhamento financeiro de empreendimentos financiados pela CAIXA — previsto, liberado e bloqueado, em uma visão única.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -180,7 +179,7 @@
 </head>
 <body>
 
-<div class="topbar">Construview está <b>em construção</b> · versão beta — acesso por convite</div>
+<div class="topbar">Relatório do dia, fechamento mensal e alertas — <b>direto no e-mail da diretoria</b></div>
 
 <nav>
   <div class="nav-in">
@@ -218,7 +217,7 @@
       <a class="btn btn-primary" href="https://app.construview.io">Entrar</a>
       <a class="btn btn-ghost" href="#plataforma">Como funciona</a>
     </div>
-    <div class="beta-note anim" style="animation-delay:.24s">Plataforma em <b>fase beta</b> · disponível por convite</div>
+    <div class="beta-note anim" style="animation-delay:.24s">Acesso <b>corporativo</b> · dados processados no servidor · sem autocadastro</div>
 
     <div class="mock anim" style="animation-delay:.28s">
       <div class="k"><div class="kl">Saldo devedor PJ</div><div class="kv">R$ 23.105.306</div><div class="ks">soma dos contratos PJ · NPL</div></div>
@@ -277,7 +276,7 @@
           </svg>
         </div>
         <h3>Previsão de medição</h3>
-        <p>Simule a próxima medição por etapa e salve a meta. A previsão fica visível para toda a empresa — engenharia lança, diretoria acompanha de qualquer lugar.</p>
+        <p>Simule a próxima medição por etapa e salve a meta — inclusive quanto um aporte de garantia destravaria de liberação PJ. Engenharia lança, diretoria acompanha de qualquer lugar.</p>
         <div class="more">Compartilhada na empresa</div>
       </div>
     </div>
@@ -286,7 +285,51 @@
 
 <section>
   <div class="wrap">
-    <div class="lbl"><span class="n">03</span> Uma prévia</div>
+    <div class="lbl"><span class="n">03</span> O acompanhamento chega até você</div>
+    <div class="sec-title">Você não precisa abrir o painel para saber como está.</div>
+    <p class="sec-lead">A Construview envia o essencial por e-mail, no horário que a construtora escolher — do movimento do dia ao fechamento do mês, pronto para a reunião de diretoria.</p>
+    <div class="feat">
+      <div class="fcard">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8.4" stroke="#1E4D3A" stroke-width="2.2"/>
+            <path d="M12 8 v4 l2.6 1.6" stroke="#B0883E" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Relatório do dia</h3>
+        <p>O que entrou em conta, registros em cartório, medição recebida e pendências — o resumo de cada dia útil, direto no e-mail do CEO e dos diretores.</p>
+        <div class="more">Todo dia útil</div>
+      </div>
+      <div class="fcard">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="5" width="16" height="12" rx="2" stroke="#1E4D3A" stroke-width="2.2"/>
+            <path d="M8 21 h8" stroke="#B0883E" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Fechamento do mês, pronto</h3>
+        <p>No primeiro dia útil, a apresentação do mês chega montada: medido, creditado, impacto dos registros, Fiador e a página de cada empreendimento — pronta para projetar.</p>
+        <div class="more">Apresentação em anexo</div>
+      </div>
+      <div class="fcard">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 4 L21 19 H3 Z" stroke="#1E4D3A" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M12 10 v4" stroke="#B0883E" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="12" cy="16.6" r="1" fill="#B0883E"/>
+          </svg>
+        </div>
+        <h3>Alertas que importam</h3>
+        <p>Parcela PJ vencida, recurso travado sem registro, débitos do Fiador e o calendário de prévia — os pontos de atenção aparecem antes de virarem problema.</p>
+        <div class="more">Atenção no momento certo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="lbl"><span class="n">04</span> Uma prévia</div>
     <div class="sec-title">As telas que você vai usar.</div>
     <p class="sec-lead">Reconstruções fiéis das telas do produto, com dados fictícios — do portfólio ao contrato PJ.</p>
 
@@ -415,8 +458,9 @@
   <div class="wrap">
     <div class="closing">
       <h2>Saiba <em>exatamente</em> onde está cada empreendimento.</h2>
-      <p>Estamos em beta fechado, com um grupo selecionado de construtoras. O acesso é por convite.</p>
-      <a class="btn btn-brass" href="https://app.construview.io">Entrar</a>
+      <p>O acesso é corporativo, liberado pela nossa equipe. Fale com a gente e veja o seu portfólio nesta visão.</p>
+      <a class="btn btn-brass" href="mailto:contato@construview.io?subject=Demonstra%C3%A7%C3%A3o%20Construview">Agendar demonstração</a>
+      <a class="btn btn-ghost" href="https://app.construview.io" style="margin-left:10px;color:var(--paper);border-color:rgba(250,248,243,.35)">Entrar</a>
     </div>
   </div>
 </section>
